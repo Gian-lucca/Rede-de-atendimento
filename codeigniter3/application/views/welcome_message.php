@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<label for="cidades">Bairro</label>
 
 			<select id="cidades" name="cidades" class="form-control" disabled>
-				<option>Selecione o Bairro</option>
+				<option>Selecione</option>
 			</select>
 		</div>
 
