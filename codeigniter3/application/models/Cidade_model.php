@@ -13,10 +13,10 @@ class Cidade_model extends CI_model {
 
     public function getCidadesByIdEstados($id_estado = null){
 
-        return $this->db
-            ->where("ID_ESTADO", $id_estado)
-            ->order_by('NOME')
-            ->get('cidade');
+        return $this->db->select('DISTINCT(Bairro)')
+            ->where("Municipio", $id_estado)
+            ->order_by('Bairro')
+            ->get('i_rededeatendimento');
     }
 
     /**Monta um select com os Bairros cadastrados*/
@@ -28,7 +28,7 @@ class Cidade_model extends CI_model {
         $options = "<option>Selecione o Bairro</option>";
 
         foreach ($cidades ->result() as $cidade) {
-            $options .= "<option value='{$cidade->id}'>$cidade->NOME</option>".PHP_EOL;
+            $options .= "<option value='{$cidade->Bairro}'>$cidade->Bairro</option>".PHP_EOL;
         }
 
         return $options;

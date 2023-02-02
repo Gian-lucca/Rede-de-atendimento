@@ -12,9 +12,9 @@ class Estado_model extends CI_model {
     /**Traz todos os Municipios cadrastrados no Banco de Dados*/
 
     public function getAll(){
-        return $this->db
-            ->order_by('NOME')
-            ->get('estado');
+        return $this->db->select('DISTINCT(Municipio)')
+            ->order_by('Municipio')
+            ->get('i_rededeatendimento');
     }
 
     /**Monta um select com os Municipios cadastrados*/
@@ -26,7 +26,7 @@ class Estado_model extends CI_model {
         $estados = $this->getAll();
 
         foreach ($estados -> result() as $estado) {
-            $options .= "<option value='{$estado->ID}'>{$estado->NOME}</option>".PHP_EOL;
+            $options .= "<option value='{$estado->Municipio}'>{$estado->Municipio}</option>".PHP_EOL;
         }
 
         return $options;

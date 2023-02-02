@@ -21,12 +21,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#estados').change(function(){
 
 				var id_estado = $('#estados').val();
-				
+				alert(id_estado);
 				$.post(base_url + 'index.php/ajax/cidade/getCidades', {
 					id_estado : id_estado
 				}, function(data){
+					
 					$('#cidades').html(data);
 					$('#cidades').removeAttr('disabled');
+				});
+			});
+		});
+
+		$(function(){
+			$('#cidades').change(function(){
+
+				var bairro = $('#cidades').val();
+				alert (bairro);
+				$.post(base_url + 'index.php/ajax/Atendimento/getAtendimentos', {bairro : bairro},
+				  	function(data){
+					$('#atendimentos').html(data);
+					$('#atendimentos').removeAttr('disabled');
 				});
 			});
 		});
@@ -39,25 +53,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container">
 	<div class="row">
 
-		<h1>Rede de Atendimentos</h1>
+		<form action="" method="post">
 
-		<div class="form-group">
+			<h1>Rede de Atendimentos</h1>
 
-			<label for="estados">Municípios</label>
+			<div class="form-group">
 
-			<select id="estados" name="estados" class="form-control">
-				<?php echo $options_estados; ?>
-			</select>
-		</div>
+				<label for="estados">Municípios</label>
 
-		<div class="form-group">
+				<select id="estados" name="estados" class="form-control">
+					<?php echo $options_estados; ?>
+				</select>
+			</div>
 
-			<label for="cidades">Bairro</label>
+			<div class="form-group">
 
-			<select id="cidades" name="cidades" class="form-control" disabled>
-				<option>Selecione</option>
-			</select>
-		</div>
+				<label for="cidades">Bairro</label>
+
+				<select id="cidades" name="cidades" class="form-control" disabled>
+					<option>Selecione</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+
+				<label for="atendimentos">Rede de Atendimento</label>
+
+				<select id="atendimentos" name="atendimentos" class="form-control" disabled>
+					<option>Selecione</option>
+				</select>
+			</div>
+
+			<input type="Submit">
+
+		</form>
 
 	</div>
 </div>
